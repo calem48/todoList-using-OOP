@@ -3,13 +3,22 @@ class Storge {
         this.name = 'taskList'
     }
 
-    setItem() {
-        let data = this.getItem()
-        localStorage.setItem(this.name, JSON.stringify(this.name))
+    setItem(data) {
+        let tasks = this.getItem()
+        tasks.push(data)
+        localStorage.setItem(this.name, JSON.stringify(tasks))
     }
 
     getItem() {
         return JSON.parse(localStorage.getItem(this.name)) || []
+    }
+
+    update(data) {
+        return localStorage.setItem(this.name, JSON.stringify(data))
+    }
+
+    clearAllData() {
+        localStorage.removeItem(this.name)
     }
 
 }

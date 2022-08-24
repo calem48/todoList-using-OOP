@@ -11,13 +11,37 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <title>Document</title>
 </head>
 
 <body>
 
+    <div id="task-form" class="task container">
+        <form class="task-form">
+            <input type="text" placeholder="put a task" class="name">
+            <input type="submit" value="submit">
+        </form>
+
+        <div class="list">
+            <ul>
+
+            </ul>
+            <div class="footer">
+                <div class="total-item">10 items</div>
+                <div class="option">
+                    <span>All</span>
+                    <span>Active</span>
+                    <span>Completed</span>
+                </div>
+                <div class="clear-item">Clear all</div>
+            </div>
+        </div>
+    </div>
 
     <script src="js/js.js" type="module"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 
 </html>
