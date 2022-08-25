@@ -8,17 +8,30 @@ class UI {
 
     showTasks(data) {
         this.list.innerHTML = data.map(item => {
+            // return `
+            //     <li>
+            //         <div class="info">
+            //             <input type="radio">
+            //             <span>${item.nameTask}</span>
+            //         </div>
+            //         <div class="action">
+            //             <button data-id=${item.id} class="edit">edit</button>
+            //             <button data-id=${item.id} class="delete">delete</button>
+            //         </div>
+            //     </li>
+            // `
+
             return `
-                <li>
-                    <div class="info">
-                        <input type="radio">
-                        <span>${item.nameTask}</span>
-                    </div>
-                    <div class="action">
-                        <button data-id=${item.id} class="edit">edit</button>
-                        <button data-id=${item.id} class="delete">delete</button>
-                    </div>
-                </li>
+            <li >
+                <div class="inputs">
+                    <input ${item.complete ? "checked" : ""} type="radio" data-id=${item.id}>
+                    <input type="text" ${!item.isEditing ? "readonly" : ""}   value=${item.nameTask}  style=${item.complete ? 'text-decoration:line-through' : ""} >
+                </div>
+                <div class="action">
+                    <button data-id=${item.id} class="edit" ${item.complete ? "disabled" : ""}>edit</button>
+                    <button data-id=${item.id}  class="delete">delete</button>
+                </div>
+             </li>
             `
         }).join('')
 

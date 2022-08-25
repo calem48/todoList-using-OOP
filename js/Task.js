@@ -3,6 +3,7 @@ class Task {
         this.id = new Date().getTime().toString()
         this.nameTask = nameTask
         this.complete = false
+        this.isEditing = false
     }
 }
 

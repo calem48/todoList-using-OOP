@@ -25,11 +25,17 @@
     justify-content: space-between;
 }
 
+.task.container .list li input[type='text'] {
+    border: none;
+    outline: none;
+}
+
 .task.container .footer {
     display: flex;
     gap: 20px;
 
 }
+
 
 
 
