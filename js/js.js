@@ -26,7 +26,7 @@ clear.addEventListener('click', clearAllTasks)
 
 //init my objects
 let storge = new Storge()
-let ui = new UI(taskForm, list)
+let ui = new UI(taskForm, list, totale)
 
 
 
@@ -39,12 +39,12 @@ function addTask(e) {
         return ui.showNotification("please put a value");
     }
 
-    let task = new Task(input)
+    let task = new Task(input.value)
 
     storge.setItem(task)
     let data = storge.getItem()
     ui.showTasks(data)
-    totale.innerHTML = data.length + " items"
+    ui.totaleItems(data)
     input.value = ''
     ui.showNotification("added successfully");
 
@@ -58,7 +58,7 @@ function deleteTask(e) {
             let data = storge.getItem().filter(item => item.id !== id)
             storge.update(data)
             ui.showTasks(data)
-            totale.innerHTML = data.length
+            ui.totaleItems(data)
             ui.showNotification("remove successfully")
         }
     }
@@ -70,24 +70,18 @@ function editTask(e) {
     if (id) {
         if (e.target.classList.contains("edit")) {
             let { id: idItem } = storge.getItem().find(item => item.id === id)
-            let input = e.target.parentElement.previousElementSibling.querySelector('input[type="text"]')
-            input.removeAttribute("readonly")
-            e.target.innerHTML = 'save'
 
-
-            e.target.addEventListener('click', function () {
-                if (input.value === '') {
-                    return ui.showNotification("please put a value");
-                }
+            let func = e.target.addEventListener("change", function () {
+                console.log('hhh');
                 let data = storge.getItem().map(item => {
-                    return item.id === idItem ? { ...item, nameTask: input.value } : item
+                    return item.id === idItem ? { ...item, nameTask: e.target.value } : item
                 })
-
                 storge.update(data)
                 ui.showNotification("updated successfully")
                 ui.showTasks(data)
+                return removeEventListener('change', func)
             })
-            e.target.removeEventListener("click", editTask)
+
         }
     }
 }
@@ -109,28 +103,31 @@ function complete(e) {
 }
 
 function allTasks() {
-
-
     let data = storge.getItem()
     storge.update(data)
-
+    ui.totaleItems(data)
     ui.showTasks(data)
 }
 
 function activeTask() {
+    let count = 0
     let data = storge.getItem().filter(item => {
+        count = !item.complete ? count + 1 : count
         return !item.complete
     })
     // storge.update(data)
+    ui.totaleItems(count)
     ui.showTasks(data)
 }
 
 function tasksComplete() {
+    let count = 0
     let data = storge.getItem().filter(item => {
+        count = item.complete ? count + 1 : count
         return item.complete
     })
     // storge.update(data)
-
+    ui.totaleItems(count)
     ui.showTasks(data)
 }
 
@@ -138,8 +135,10 @@ function tasksComplete() {
 function clearAllTasks() {
     storge.clearAllData()
     let data = storge.getItem()
-    totale.innerHTML = data.length
+
+    ui.totaleItems(data)
     ui.showTasks(data)
+    ui.showNotification("delet all items successfully")
 }
 
 

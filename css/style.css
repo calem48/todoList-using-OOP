@@ -1,10 +1,22 @@
-* {
+*,
+::after,
+::before {
     margin: 0;
     padding: 0;
     font-family: 'Work Sans', sans-serif;
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0 !important;
+}
+
+
+body {
+    background-color: #ccc;
 }
 
 
@@ -14,30 +26,120 @@
     padding-right: 15px;
 }
 
-.task.container {
+.task {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.task.container .list li {
+.task .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: -110px;
+    gap: 20px;
+}
+
+.form-check-input {
+    border: 1.5px solid #935ddd;
+    width: 25px;
+    height: 25px;
+
+}
+
+.submit.form-check-input:checked {
+    border: 1.5px solid #935ddd;
+    background-color: #fff;
+}
+
+.form-check-input:checked {
+    background-color: #9357de;
+    border-color: #a95ee3;
+}
+
+.submit.form-check-input:focus {
+    box-shadow: none;
+}
+
+.task .container .list {
+    width: 50%;
+    /* padding: 30px 0; */
+    background-color: white;
+    /* padding: 10px 0; */
+}
+
+.task .container .list li {
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
 }
 
-.task.container .list li input[type='text'] {
-    border: none;
-    outline: none;
+.delete {
+    display: none;
+    transition: 0.3s;
 }
 
-.task.container .footer {
+form:hover .delete,
+li:hover .delete {
     display: flex;
-    gap: 20px;
+}
 
+#task-form img {
+    width: 100%;
+    display: block;
+    height: 280px;
+}
+
+.task-form {
+    width: 50%;
+}
+
+.footer {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    background: #fff;
+    line-height: 70px;
 }
 
 
+.input-group-text {
+    border: none;
+    background-color: white;
+    border-radius: unset
+}
 
+.form-control {
+    border: none;
+    line-height: 60px;
+}
+
+#task-form .form-control:focus {
+    border: none !important;
+    background-color: white;
+    box-shadow: none
+}
+
+
+.option {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+
+.option a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+form .delete,
+.clear-item {
+    cursor: pointer;
+}
 
 
 
