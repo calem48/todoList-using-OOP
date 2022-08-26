@@ -35,20 +35,20 @@ class UI {
                     </div>
             */
 
-
+            {/* <input data-id=${item.id} type="text" class="form-control edit ${item.complete ? "completed" : ""}" value=${item.nameTask} > */ }
             return `
             <li >
                 <div class="input-group">
                     <div class="input-group-text">
                         <input class="form-check-input mt-0" type="radio" ${item.complete ? "checked" : ""} data-id=${item.id} >
                     </div>
-                    <input data-id=${item.id} type="text" class="form-control edit"  value=${item.nameTask}  value=${item.nameTask}  style=${item.complete ? ('text-decoration:line-through') : ""
-                } >
-        <span data-id=${item.id} class="delete input-group-text">X</span>
+                
+                    <textarea rows="1"  ${item.complete ? "disabled" : ""} data-id=${item.id} type="text" class="form-control edit ${item.complete ? "completed" : ""}">${item.nameTask}</textarea>
+                    <span data-id=${item.id} class="delete input-group-text">X</span>
                 </div >
              
              </li >
-            `
+                `
         }).join('')
 
     }

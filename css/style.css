@@ -141,6 +141,23 @@ form .delete,
     cursor: pointer;
 }
 
+.completed {
+    text-decoration: line-through;
+    color: #ccc;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+    border: none;
+    overflow: hidden;
+
+}
+
+.form-control:disabled {
+    background-color: #fff;
+    opacity: 1;
+}
 
 
 /********************************/

@@ -40,7 +40,7 @@ function addTask(e) {
     }
 
     let task = new Task(input.value)
-
+    console.log(task);
     storge.setItem(task)
     let data = storge.getItem()
     ui.showTasks(data)
@@ -81,13 +81,12 @@ function editTask(e) {
                 ui.showTasks(data)
                 return removeEventListener('change', func)
             })
-
         }
     }
 }
 
 
-
+// get tasks complete
 function complete(e) {
     if (e.target.type === 'radio') {
         let id = e.target.dataset.id
