@@ -1,6 +1,6 @@
 class Storge {
-    constructor() {
-        this.name = 'taskList'
+    constructor(name) {
+        this.name = name
     }
 
     setItem(data) {

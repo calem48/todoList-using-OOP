@@ -9,9 +9,7 @@ let active = document.querySelector('.active')
 let comp = document.querySelector('.completed')
 let clear = document.querySelector('.clear-item')
 
-//init my objects
-let storge = new Storge()
-let ui = new UI(taskForm, list, totale)
+
 
 
 // my events
@@ -30,7 +28,10 @@ comp.addEventListener('click', tasksComplete)
 clear.addEventListener('click', clearAllTasks)
 
 
-
+//init my objects
+let storge = new Storge('taskList')
+let st = new Storge('show')
+let ui = new UI(taskForm, list, totale)
 
 
 function addTask(e) {
@@ -149,9 +150,9 @@ function tasksComplete() {
 }
 
 function showSiwtch(toggle) {
-    let data = JSON.parse(localStorage.getItem('show'))
+    let data = st.getItem()
     data.show = toggle
-    localStorage.setItem("show", JSON.stringify(data))
+    st.update(data)
 }
 
 
