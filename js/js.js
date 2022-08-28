@@ -16,8 +16,10 @@ let clear = document.querySelector('.clear-item')
 addEventListener("DOMContentLoaded", () => {
     totale.innerHTML = storge.getItem().length + " items"
     ui.showTasks(storge.getItem())
-    localStorage.setItem('show', JSON.stringify({ show: false }))
+    st.update({ show: false })
 })
+
+
 taskForm.addEventListener("submit", addTask)
 list.addEventListener("click", deleteTask)
 list.addEventListener('click', editTask)
