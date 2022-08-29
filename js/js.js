@@ -8,7 +8,7 @@ let all = document.querySelector('.all')
 let active = document.querySelector('.active')
 let comp = document.querySelector('.completed')
 let clear = document.querySelector('.clear-item')
-
+let darkLight = document.querySelector('.icon')
 
 
 
@@ -17,6 +17,10 @@ addEventListener("DOMContentLoaded", () => {
     totale.innerHTML = storge.getItem().length + " items"
     ui.showTasks(storge.getItem())
     st.update({ show: false })
+    if (darkMode.getItem().length === 0) {
+        darkMode.update({ dark: false })
+    }
+    darkMode.getItem().dark ? document.body.classList.add("act") : document.body.classList.remove("act")
 })
 
 
@@ -28,12 +32,13 @@ all.addEventListener('click', allTasks)
 active.addEventListener('click', activeTask)
 comp.addEventListener('click', tasksComplete)
 clear.addEventListener('click', clearAllTasks)
-
+darkLight.addEventListener("click", switchMode)
 
 //init my objects
 let storge = new Storge('taskList')
 let st = new Storge('show')
-let ui = new UI(taskForm, list, totale)
+let darkMode = new Storge('dark')
+let ui = new UI(taskForm, list, totale, darkLight)
 
 
 function addTask(e) {
@@ -84,7 +89,7 @@ function editTask(e) {
         if (e.target.classList.contains("edit")) {
             let { id: idItem } = storge.getItem().find(item => item.id === id)
 
-            let onChange = e.target.addEventListener("change", function () {
+            let onchange = e.target.addEventListener("change", function () {
 
                 let data = storge.getItem().map(item => {
                     return item.id === idItem ? { ...item, nameTask: e.target.value } : item
@@ -94,7 +99,7 @@ function editTask(e) {
                 e.target.innerHTML = e.target.value
                 ui.showNotification("updated successfully")
             })
-            e.target.removeEventListener("change", onChange)
+            e.target.removeEventListener("change", onchange)
         }
     }
 }
@@ -124,6 +129,8 @@ function allTasks() {
 }
 
 function activeTask() {
+    showSiwtch(false)
+
     let count = 0
     let data = storge.getItem().filter(item => {
         count = !item.complete ? count + 1 : count
@@ -168,3 +175,8 @@ function clearAllTasks() {
 
 
 
+function switchMode() {
+    let data = darkMode.getItem()
+    ui.darkModeLightDark(data.dark)
+    darkMode.update({ dark: !data.dark })
+}
