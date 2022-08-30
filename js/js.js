@@ -21,6 +21,7 @@ addEventListener("DOMContentLoaded", () => {
         darkMode.update({ dark: false })
     }
     darkMode.getItem().dark ? document.body.classList.add("act") : document.body.classList.remove("act")
+    ui.showIconLightDark(darkMode.getItem().dark)
 })
 
 
@@ -52,6 +53,7 @@ function addTask(e) {
         }
         let task = new Task(input.value)
         storge.setItem(task)
+        ui.showNotification("item added success")
         input.value = ''
     } else {
         const input = this.querySelector('input[type="text"]');
@@ -61,6 +63,7 @@ function addTask(e) {
         let task = new Task(input.value)
         storge.setItem(task)
         ui.addElment(task)
+        ui.showNotification("item added success")
         input.value = ''
     }
     ui.totaleItems(storge.getItem().length)
@@ -89,7 +92,7 @@ function editTask(e) {
         if (e.target.classList.contains("edit")) {
             let { id: idItem } = storge.getItem().find(item => item.id === id)
 
-            let onchange = e.target.addEventListener("change", function () {
+            let handlEdit = function () {
 
                 let data = storge.getItem().map(item => {
                     return item.id === idItem ? { ...item, nameTask: e.target.value } : item
@@ -98,10 +101,12 @@ function editTask(e) {
                 storge.update(data)
                 e.target.innerHTML = e.target.value
                 ui.showNotification("updated successfully")
-            })
-            e.target.removeEventListener("change", onchange)
+                this.removeEventListener("change", handlEdit, false)
+            }
+            e.target.addEventListener("change", handlEdit, false)
         }
     }
+    // this.removeEventListener("click", editTask, false)
 }
 
 
@@ -179,4 +184,6 @@ function switchMode() {
     let data = darkMode.getItem()
     ui.darkModeLightDark(data.dark)
     darkMode.update({ dark: !data.dark })
+    // this.querySelector("svg").style = "transition: 2s;transform: rotate(360deg);"
+    this.classList.toggle("act")
 }
