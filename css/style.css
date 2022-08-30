@@ -233,10 +233,7 @@ body.act .task-form {
     background-color: rgb(37, 39, 60);
 }
 
-/* body.act .icon svg {
-    transform: rotate(360deg);
-    transition: 2s;
-} */
+
 
 .icon.act svg {
     animation-name: move;
@@ -261,13 +258,8 @@ body.act .task-form {
     animation-timing-function: ease-out
 }
 
-/* .icon svg {
-    transition: 1s;
-    transform: rotate(0deg);
 
-} */
 
-a
 /********************************/
 /********************************/
 
@@ -293,7 +285,7 @@ a
 /********************************/
 /********************************/
 
-@media(max-width:767px) {}
+
 
 @media(min-width:768px) {
     .container {

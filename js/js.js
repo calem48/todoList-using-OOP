@@ -92,7 +92,7 @@ function editTask(e) {
         if (e.target.classList.contains("edit")) {
             let { id: idItem } = storge.getItem().find(item => item.id === id)
 
-            let handlEdit = function () {
+            let handlEdit = function (e) {
 
                 let data = storge.getItem().map(item => {
                     return item.id === idItem ? { ...item, nameTask: e.target.value } : item
@@ -102,10 +102,12 @@ function editTask(e) {
                 e.target.innerHTML = e.target.value
                 ui.showNotification("updated successfully")
                 this.removeEventListener("change", handlEdit, false)
+                e.stopImmediatePropagation()
             }
             e.target.addEventListener("change", handlEdit, false)
         }
     }
+
     // this.removeEventListener("click", editTask, false)
 }
 

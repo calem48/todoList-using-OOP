@@ -32,7 +32,7 @@ class UI {
     showNotification(text) {
         Toastify({
             text: text,
-            className: "info",
+            className: "dark",
             duration: 2000,
             position: "center",
             style: {
