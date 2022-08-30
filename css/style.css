@@ -15,9 +15,7 @@ ul {
 }
 
 
-body {
-    background-color: #ccc;
-}
+
 
 
 .container {
@@ -68,12 +66,13 @@ body {
     /* padding: 30px 0; */
     background-color: white;
     /* padding: 10px 0; */
+    box-shadow: rgb(0 0 0 / 54%) 0px 0px 5px -1px;
 }
 
 .task .container .list li {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #cccccc54;
     cursor: pointer;
 }
 
@@ -103,6 +102,7 @@ li:hover .delete {
     justify-content: space-evenly;
     background: #fff;
     line-height: 70px;
+    box-shadow: rgb(0 0 0 / 54%) 0px 0px 5px -1px;
 }
 
 
